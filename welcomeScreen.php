@@ -23,7 +23,7 @@
             <input type="password" placeholder="Retype the password"  required>
             <button type="submit">Sign-up</button>
         </form>
-        <p class="signup-link">Already have an account? <a href="/index.php">Log in</a></p>
+        <p class="signup-link">Already have an account? <a href="index.php">Log in</a></p>
     </div>
   </div>
 </section>
