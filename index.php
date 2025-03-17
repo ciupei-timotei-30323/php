@@ -9,7 +9,11 @@
 </head>
 <body>
 
+<?php
 
+  $db = mysqli_connect( "mysql-38065637-timociupei-7099.c.aivencloud.com","avnadmin", "AVNS_trJDZyuHOMIki9yMTNa","defaultdb", 10056);
+
+?>
 
 <section class='wrapper'>
   <div class='hero'>
@@ -20,7 +24,7 @@
         <form>
             <input type="text" placeholder="Username" required>
             <input type="password" placeholder="Password" required>
-            <button type="submit">Login</button>
+            <button type="submit"  >Login</button>
         </form>
         <p class="signup-link">Don't have an account? <a href="welcomeScreen.php">Sign up</a></p>
     </div>
