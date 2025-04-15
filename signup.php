@@ -1,5 +1,5 @@
 <?php
 
-    echo "You signed up";
+    echo "Login succesful";
 
 ?>
