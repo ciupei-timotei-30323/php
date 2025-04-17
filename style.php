@@ -19,6 +19,26 @@ body {
     margin: 0;
     padding: 0;
 }
+
+
+p.loginError {
+color: red;
+font-weight: bold;
+animation: jiggle 0.4s ease-in-out;
+}
+
+/* Jiggle animation */
+@keyframes jiggle {
+0% { transform: translateX(0); }
+15% { transform: translateX(-5px); }
+30% { transform: translateX(5px); }
+45% { transform: translateX(-5px); }
+60% { transform: translateX(5px); }
+75% { transform: translateX(-5px); }
+100% { transform: translateX(0); }
+}
+
+
 .login-container {
     background:rgba(46, 125, 50, 0.39);
     padding: 20px;
