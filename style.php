@@ -22,7 +22,7 @@ body {
 
 
 p.loginError {
-color: red;
+color: #800020;
 font-weight: bold;
 animation: jiggle 0.4s ease-in-out;
 }
