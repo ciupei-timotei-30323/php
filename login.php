@@ -3,37 +3,48 @@
 
 require "dbConnect.php";
 
+// WORKS
+// returns true when username is found in the DB, false otherwise
 function isUserValid(): bool
 {
     $db = getDB();
 
-    $username = htmlspecialchars(trim($_POST["name"]));
+    $username = htmlspecialchars(trim($_POST['name']));
 
     $query = "SELECT name FROM users WHERE name = '$username'";
 
     $result = $db->query($query);
+
 
     // closing the db connection
     $db->close();
 
     if($result->num_rows > 0)
     {
-        $isValid = false;
-    }
-    else{
         $_SESSION['name'] = $username;
         $isValid = true;
+    }
+    else{
+        $isValid = false;
     }
     return $isValid;
 }
 
-function isPasswdValid() : bool
+
+function isPasswdValid($name) : bool
 {
+    $db = getDB();
+
     $passwd = htmlspecialchars(trim($_POST['passwd']));
-    $repasswd = trim($_POST['repasswd']);
 
+    $query = "SELECT passwd FROM users WHERE name = '$name'";
 
-    if($passwd == $repasswd)
+    $result = $db->query($query);
+    $db->close();
+
+    $result = (string) $result->fetch_assoc()['passwd'];
+    //Warning:  Trying to access array offset on value of type null
+    if(strcmp($passwd,$result) == 0)
     {
         $_SESSION['passwd'] = $passwd;
         return true;
@@ -44,17 +55,7 @@ function isPasswdValid() : bool
     }
 }
 
-function insertUser($name, $passwd)
-{
-    $db = getDB();
 
-    $query = "INSERT INTO users (name, passwd) VALUES ('$name', '$passwd')";
-
-    $db->query($query);
-
-    $db->close();
-
-}
 
 if(!isUserValid())
 {
@@ -63,12 +64,12 @@ if(!isUserValid())
     unset($_SESSION['passwd']);
 
     // Sending the invalid message to the join.php through the $_SESSION variable
-    $_SESSION['isValid'] = "usernameInvalid";
-    header("location: join.php");
+    $_SESSION['isValidLogin'] = "usernameInvalid";
+    header("location: index.php");
     die();
 }
 
-else if(!isPasswdValid())
+else if(!isPasswdValid($_SESSION['name']))
 {
 
 //    Unsetting the passwd and username as one of these is not correct
@@ -77,16 +78,14 @@ else if(!isPasswdValid())
 
 
     // Sending the invalid message to the join.php through the $_SESSION variable
-    $_SESSION['isValid'] = "passwdInvalid";
-    header("location: join.php");
+    $_SESSION['isValidLogin'] = "passwdInvalid";
+    header("location: index.php");
     die();
 }
 
 else {
 
-    insertUser($_POST['name'], $_POST['passwd']);
-
-    $_SESSION['isValid'] = "valid";
+    $_SESSION['isValidLogin'] = "valid";
     header("location: main.php");
     die();
 }
@@ -94,8 +93,4 @@ else {
 
 
 
-
-
-
-
-
+?>

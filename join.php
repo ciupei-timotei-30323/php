@@ -1,5 +1,6 @@
 <?php session_start();
 
+unset($_SESSION['isValidLogin']);
 require "joinScreen.php";
 ?>
 
@@ -13,6 +14,7 @@ require "joinScreen.php";
   <link rel="stylesheet" href="style.php">
 </head>
 <body>
+
 
 
 <!--Debugging-->
@@ -32,8 +34,8 @@ error_reporting(E_ERROR);
             echo $html->showInvalidUserScreen();
             break;
 
-        case "valid":
-            echo $html->showValidUserScreen();
+        case "passwdInvalid":
+            echo $html->showUnmatchedPsswdScreen();
             break;
 
             default:
@@ -41,7 +43,6 @@ error_reporting(E_ERROR);
                 break;
 
     }
-
 
 ?>
 
