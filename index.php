@@ -1,7 +1,7 @@
 <?php session_start();
 require "loginScreen.php";
 unset($_SESSION['isValid']);
-
+unset($_SESSION['Day']);
 ?>
 
 <!DOCTYPE html>

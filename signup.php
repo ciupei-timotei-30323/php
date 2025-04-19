@@ -86,7 +86,7 @@ else {
 
     insertUser($_POST['name'], $_POST['passwd']);
 
-    $_SESSION['isValid'] = "valid";
+    $_SESSION['isLogged'] = "true";
     header("location: main.php");
     die();
 }

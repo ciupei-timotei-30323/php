@@ -1,6 +1,5 @@
 <?php session_start();
 
-
 require "dbConnect.php";
 
 // WORKS
@@ -85,7 +84,7 @@ else if(!isPasswdValid($_SESSION['name']))
 
 else {
 
-    $_SESSION['isValidLogin'] = "valid";
+    $_SESSION['isLogged'] = "true";
     header("location: main.php");
     die();
 }

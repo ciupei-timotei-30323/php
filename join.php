@@ -1,6 +1,8 @@
 <?php session_start();
 
 unset($_SESSION['isValidLogin']);
+unset($_SESSION['Day']);
+
 require "joinScreen.php";
 ?>
 

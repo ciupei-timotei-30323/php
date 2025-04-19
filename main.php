@@ -1,122 +1,101 @@
 <?php
 session_start();
+unset($_SESSION['isLoggedIn']);
 // this is such that only validated users can acces this page
-if($_SESSION['isValid'] != "valid" && $_SESSION['isValidLogin'] != "valid")
-{
+if($_SESSION['isLogged'] != "true") {
     header("location: index.php");
 }
 
+//Dependencies
+require "DailyBoxTemplate.php";
+require "ReservationChecker.php";
+require "generateTimeButtons.php";
 
-$today = new DateTime('now');
 
-$startOfWeek = clone $today;
+//Objects and Sessions initializations
+// This takes care of the time manipulation by user
+// The forward/backward in time buttons are controlled from here
+if(isset($_SESSION['Day'])) {
 
-$startOfWeek->modify('monday this week');
+    // the day the user got to while searching
+    $today = DateTime::createFromFormat('Y-m-d', $_SESSION['Day']);
 
-$endOfWeek = clone $today;
+    // Current irl day
+    $currentDay = new DateTime('now');
 
-$endOfWeek->modify('sunday this week');
+    // A date 2 weeks ahead of today;
+    $buff = clone $currentDay;
+    $twoWeeksFuture = $buff->add(new DateInterval('P1W'));
 
+    // checks is the user got to a day in the past or today
+    // stops the user from going into the past
+    if($today <= $currentDay) {
+        $isYesterdayBlocked = true;
+    }
+
+    // stops user from going into the >1 week future
+    elseif ($today >= $twoWeeksFuture) {
+        $isTomorrowBlocked = true;
+    }
+
+    else
+    {
+        $isYesterdayBlocked = false;
+    }
+
+}
+
+// If Session token is not initialized, do it with the current date
+else
+{
+    $isYesterdayBlocked = true;
+    $isTomorrowBlocked = false;
+    $today = new DateTime('now');
+    $_SESSION['Day'] = $today->format('Y-m-d');
+}
+
+// Here the buttons get generated
+$timeButtons = new GenerateTimeButtons($isTomorrowBlocked,$isYesterdayBlocked);
 
 ?>
+
+<!--The user chooses a day which it wants to reserve.-->
+<!--Then, the free hours of that day will be shown in the dropdown menu-->
+<!--Also, the table with all the hours in the selected week-->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="mainStyle.css">
-  <title>Weekday Boxes</title>
-  <h1>
-
-  <!-- show the current week -->
-<?php 
-
-    echo $startOfWeek->format('d/m') . " - " . $endOfWeek->format('d/m');
-
-?>
-
-  </h1>
+    <title>Reservation</title>
 </head>
 <body>
+<div class="top-bar">
+    <button>My Reservations</button>
+</div>
 
-  <div class="week-container">
-    <div class="day-column">
-      <div class="day-title">Mon</div>
-      <div class="box">08:00</div>
-      <div class="box">09:00</div>
-      <div class="box">10:00</div>
-      <div class="box">11:00</div>
-      <div class="box">12:00</div>
-      <div class="box">13:00</div>
-      <div class="box">14:00</div>
-      <div class="box">15:00</div>
-    </div>
-    <div class="day-column">
-      <div class="day-title">Tue</div>
-      <div class="box">1</div>
-      <div class="box">2</div>
-      <div class="box">3</div>
-      <div class="box">4</div>
-      <div class="box">5</div>
-      <div class="box">6</div>
-      <div class="box">7</div>
-      <div class="box">8</div>
-    </div>
-    <div class="day-column">
-      <div class="day-title">Wed</div>
-      <div class="box">1</div>
-      <div class="box">2</div>
-      <div class="box">3</div>
-      <div class="box">4</div>
-      <div class="box">5</div>
-      <div class="box">6</div>
-      <div class="box">7</div>
-      <div class="box">8</div>
-    </div>
-    <div class="day-column">
-      <div class="day-title">Thu</div>
-      <div class="box">1</div>
-      <div class="box">2</div>
-      <div class="box">3</div>
-      <div class="box">4</div>
-      <div class="box">5</div>
-      <div class="box">6</div>
-      <div class="box">7</div>
-      <div class="box">8</div>
-    </div>
-    <div class="day-column">
-      <div class="day-title">Fri</div>
-      <div class="box">1</div>
-      <div class="box">2</div>
-      <div class="box">3</div>
-      <div class="box">4</div>
-      <div class="box">5</div>
-      <div class="box">6</div>
-      <div class="box">7</div>
-      <div class="box">8</div>
-    </div>
-    <div class="day-column">
-      <div class="day-title">Sat</div>
-      <div class="box">1</div>
-      <div class="box">2</div>
-      <div class="box">3</div>
-      <div class="box">4</div>
-      <div class="box">5</div>
-      <div class="box">6</div>
-      <div class="box">7</div>
-      <div class="box">8</div>
-    </div>
-    <div class="day-column">
-      <div class="day-title">Sun</div>
-      <div class="box">1</div>
-      <div class="box">2</div>
-      <div class="box">3</div>
-      <div class="box">4</div>
-      <div class="box">5</div>
-      <div class="box">6</div>
-      <div class="box">7</div>
-      <div class="box">8</div>
-    </div>
-  </div>
+<div class="main-content">
+    <div class="container">
+        <div class="header-row">
 
+            <?php echo $timeButtons->getFinalHtmlYestrdy();?>
+            <div class="header-title">Reserve on <?php echo $today->format('m-d')?></div>
+            <?php echo $timeButtons->getFinalHtmlTmmrw();?>
+
+        </div>
+
+        <form method="post">
+            <?php
+
+            ?>
+            <button class="submit-btn" type="submit">Submit</button>
+        </form>
+        <a href="resetTime.php" class="submit-btn">Reset</a>
+    </div>
+</div>
 </body>
 </html>
+
