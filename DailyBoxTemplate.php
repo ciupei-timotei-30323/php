@@ -31,7 +31,7 @@ class DailyBoxTemplate
             $this->finalHtml .= '"><label class="radio-label"><input type="radio" name="slot" ';
         }
 
-        $this->finalHtml .= 'value="'.$this->date->format('D-m H:i').'"> '.$this->date->format('H:i').'</label></div>';
+        $this->finalHtml .= 'value="'.$this->date->format('Y-d-m H:i').'"> '.$this->date->format('H:i').'</label></div>';
         return $this->finalHtml;
 
     }

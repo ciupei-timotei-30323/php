@@ -50,7 +50,14 @@ function insertUser($name, $passwd)
 
     $query = "INSERT INTO users (name, passwd) VALUES ('$name', '$passwd')";
 
+
     $db->query($query);
+
+    //finding the id and putting it in the Session token
+    $idQuery = "SELECT no FROM users WHERE name = '$name'";
+    $result = $db->query($idQuery);
+    $_SESSION['userId'] = $result->fetch_assoc()['no'];
+
 
     $db->close();
 

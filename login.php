@@ -54,6 +54,18 @@ function isPasswdValid($name) : bool
     }
 }
 
+function getUserId($name)
+{
+    $db = getDB();
+
+    $query = "SELECT no FROM users WHERE name = '$name'";
+
+    $result = $db->query($query);
+
+    $db->close();
+
+    $_SESSION['userId'] = $result->fetch_assoc()['no'];
+}
 
 
 if(!isUserValid())
@@ -84,6 +96,7 @@ else if(!isPasswdValid($_SESSION['name']))
 
 else {
 
+    getUserId($_SESSION['name']);
     $_SESSION['isLogged'] = "true";
     header("location: main.php");
     die();

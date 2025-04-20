@@ -145,4 +145,23 @@ input:disabled{
     cursor: not-allowed;
 }
 
+.textarea {
+    width: 100%;
+    max-width: 300px;
+    height: 200px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    background-color: #eee;
+    border: 2px solid #000;
+    color: #000;
+    box-sizing: border-box;
+    resize: none;
+    outline: none;
+}
+
+.textarea:focus {
+    background-color: #fff;
+    border-color: #333;
+}
+
 

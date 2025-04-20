@@ -1,14 +1,13 @@
 <?php
 session_start();
-unset($_SESSION['isLoggedIn']);
+//unset($_SESSION['isLoggedIn']);
+
 // this is such that only validated users can acces this page
 if($_SESSION['isLogged'] != "true") {
     header("location: index.php");
 }
-
 //Dependencies
-require "DailyBoxTemplate.php";
-require "ReservationChecker.php";
+require "generateDailyTable.php";
 require "generateTimeButtons.php";
 
 
@@ -57,6 +56,11 @@ else
 // Here the buttons get generated
 $timeButtons = new GenerateTimeButtons($isTomorrowBlocked,$isYesterdayBlocked);
 
+$firstHour = clone $today->setTime(8, 0);
+$shiftTime = (clone $firstHour) -> add(new DateInterval('PT4H'));
+
+$formHtml = new generateDailyTable();
+
 ?>
 
 <!--The user chooses a day which it wants to reserve.-->
@@ -87,8 +91,13 @@ $timeButtons = new GenerateTimeButtons($isTomorrowBlocked,$isYesterdayBlocked);
 
         </div>
 
-        <form method="post">
+        <form action="reservePage.php" method="post">
             <?php
+
+            $formHtml->addHoursInterval($firstHour, $shiftTime);
+
+            echo $formHtml->getFinalHtml();
+
 
             ?>
             <button class="submit-btn" type="submit">Submit</button>

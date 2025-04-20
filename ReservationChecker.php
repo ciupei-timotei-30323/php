@@ -16,13 +16,8 @@ class ReservationChecker
         $this->checkedDate = $checkedDate;
     }
 
-    /**
-     * @param mixed $checkedDate
-     */
-    public function setCheckedDate($checkedDate)
-    {
-        $this->checkedDate = $checkedDate;
-    }
+
+
 
     /**
      * @return mixed
@@ -32,8 +27,21 @@ class ReservationChecker
         return $this->isDateFree;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getCheckedDate()
+    {
+        return $this->checkedDate;
+    }
 
 
+
+
+    public function addOneHour()
+    {
+        $this->checkedDate->add(new DateInterval('PT1H'));
+    }
 
 
     // Checks if a given date(day and hour) is free or not
