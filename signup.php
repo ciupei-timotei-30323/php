@@ -44,7 +44,7 @@ function isPasswdValid() : bool
     }
 }
 
-function insertUser($name, $passwd)
+function insertUser($name, $passwd): void
 {
     $db = getDB();
 

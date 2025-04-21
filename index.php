@@ -21,22 +21,11 @@ unset($_SESSION['Day']);
 
 $html = new loginScreen();
 
-switch ($_SESSION['isValidLogin']) {
-
-
-    case "usernameInvalid":
-        echo $html->getHtmlCodeInvalidUser();
-        break;
-
-    case "passwdInvalid":
-        echo $html->getHtmlCodeInvalidPasswd();
-        break;
-
-    default:
-        echo $html->getHtmlCodeValidLogin();
-        break;
-
-}
+echo match ($_SESSION['isValidLogin']) {
+    "usernameInvalid" => $html->getHtmlCodeInvalidUser(),
+    "passwdInvalid" => $html->getHtmlCodeInvalidPasswd(),
+    default => $html->getHtmlCodeValidLogin(),
+};
 
 ?>
 

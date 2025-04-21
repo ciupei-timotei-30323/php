@@ -5,4 +5,3 @@ $_SESSION['Day'] = $currentDay->sub(new DateInterval('P1D'))->format('Y-m-d');
 
 header("Location: main.php");
 
-?>

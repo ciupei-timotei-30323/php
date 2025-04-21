@@ -70,3 +70,10 @@ session_start();
 </div>
 </body>
 </html>
+
+
+<?php
+// transferring the POST var to a SESSIon one bc otheriwise it will be lost in the next page
+$_SESSION['slot'] = $_POST['slot'];
+
+?>

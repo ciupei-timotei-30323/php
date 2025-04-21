@@ -2,10 +2,10 @@
 
 class generateTimeButtons
 {
-    private $finalHtmlTmmrw = "";
+    private string $finalHtmlTmmrw;
 
 
-    private $finalHtmlYestrdy = "";
+    private string $finalHtmlYestrdy;
 
     public function __construct($isTmmrwBlocked, $isYestrdyBlocked)
     {
@@ -41,4 +41,3 @@ class generateTimeButtons
 }
 
 
-?>

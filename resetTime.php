@@ -4,4 +4,3 @@ unset($_SESSION['Day']);
 
 header("Location: main.php");
 
-?>

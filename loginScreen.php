@@ -3,7 +3,7 @@
 class loginScreen
 {
 
-    private $htmlCodeValidLogin = <<<'EOD'
+    private string $htmlCodeValidLogin = <<<'EOD'
 
 <section class='wrapper'>
   <div class='hero'>
@@ -24,7 +24,7 @@ class loginScreen
 EOD;
 
 
-    private $htmlCodeInvalidUser = <<<'EOD'
+    private string $htmlCodeInvalidUser = <<<'EOD'
 
 <section class='wrapper'>
   <div class='hero'>
@@ -45,7 +45,7 @@ EOD;
 
 EOD;
 
-    private $htmlCodeInvalidPasswd = <<<'EOD'
+    private string $htmlCodeInvalidPasswd = <<<'EOD'
 
 <section class='wrapper'>
   <div class='hero'>

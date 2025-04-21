@@ -3,7 +3,7 @@
 class joinScreen
 {
 
-    private $htmlCodeValid = <<<'EOD'
+    private string $htmlCodeValid = <<<'EOD'
 <section class='wrapper'>
   <div class='hero'>
   </div>
@@ -23,7 +23,7 @@ class joinScreen
 </section> 
 EOD;
 
-    private $htmlCodeInvalidUser = <<<'EOD'
+    private string $htmlCodeInvalidUser = <<<'EOD'
 <section class='wrapper'>
   <div class='hero'>
   </div>
@@ -45,7 +45,7 @@ EOD;
 EOD;
 
 
-    private $htmlCodeUnmatchedPasswds = <<<'EOD'
+    private string $htmlCodeUnmatchedPasswds = <<<'EOD'
 
 <section class='wrapper'>
   <div class='hero'>
@@ -70,17 +70,17 @@ EOD;
 
 
 
-    public function showInvalidUserScreen() : mixed
+    public function showInvalidUserScreen() : string
     {
         return $this->htmlCodeInvalidUser;
     }
 
-    public function showValidUserScreen() : mixed
+    public function showValidUserScreen() : string
     {
         return $this->htmlCodeValid;
     }
 
-    public function showUnmatchedPsswdScreen() : mixed
+    public function showUnmatchedPsswdScreen() : string
     {
         return $this->htmlCodeUnmatchedPasswds;
     }

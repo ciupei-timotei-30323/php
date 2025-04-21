@@ -8,13 +8,13 @@ class generateDailyTable
 {
     private  $dailyBoxTemplate;
 
-    private $finalHtml = "";
+    private string $finalHtml = "";
 
     private $checker;
 
     // adds to the final html a whole list set in the specified
     // hours interval
-    public function addHoursInterval(DateTime $firstHour, DateTime $lastHour)
+    public function addHoursInterval(DateTime $firstHour, DateTime $lastHour): void
     {
         $this->checker = new ReservationChecker($firstHour);
 
@@ -27,7 +27,7 @@ class generateDailyTable
     }
 
     // Adds a box to the daily table
-    public function addTableBox($isDisabled ,$date)
+    public function addTableBox($isDisabled ,$date): void
     {
         $this->dailyBoxTemplate = new DailyBoxTemplate($isDisabled, $date);
         $this->finalHtml .= $this->dailyBoxTemplate->getFinalHtml();

@@ -3,9 +3,9 @@
 class DailyBoxTemplate
 {
 
-    private $finalHtml = "";
+    private string $finalHtml = "";
 
-    private $isDisabled = false;
+    private bool $isDisabled;
 
     private $date;
 

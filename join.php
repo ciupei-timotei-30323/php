@@ -20,31 +20,21 @@ require "joinScreen.php";
 
 
 <!--Debugging-->
-<?php ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ERROR);  
-?>
+<?php //ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ERROR);
+//?>
 
 
 
 <?php
     $html = new joinScreen();
 
-    switch ($_SESSION['isValid']) {
-
-        case "usernameInvalid":
-            echo $html->showInvalidUserScreen();
-            break;
-
-        case "passwdInvalid":
-            echo $html->showUnmatchedPsswdScreen();
-            break;
-
-            default:
-                echo $html->showValidUserScreen();
-                break;
-
-    }
+echo match ($_SESSION['isValid']) {
+    "usernameInvalid" => $html->showInvalidUserScreen(),
+    "passwdInvalid" => $html->showUnmatchedPsswdScreen(),
+    default => $html->showValidUserScreen(),
+};
 
 ?>
 

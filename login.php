@@ -54,7 +54,7 @@ function isPasswdValid($name) : bool
     }
 }
 
-function getUserId($name)
+function getUserId($name): void
 {
     $db = getDB();
 
@@ -105,4 +105,3 @@ else {
 
 
 
-?>
