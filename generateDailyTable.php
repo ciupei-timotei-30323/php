@@ -23,7 +23,6 @@ class generateDailyTable
             $this->addTableBox($this->checker->isDateFree(), $this->checker->getCheckedDate());
             $this->checker->addOneHour();
         }
-
     }
 
     // Adds a box to the daily table
