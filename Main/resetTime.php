@@ -2,5 +2,5 @@
 
 unset($_SESSION['Day']);
 
-header("Location: Main/main.php");
+header("Location: main.php");
 

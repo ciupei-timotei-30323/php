@@ -27,6 +27,20 @@ function isUserValid(): bool
     return $isValid;
 }
 
+
+function getUserId($name): void
+{
+    $db = getDB();
+
+    $query = "SELECT no FROM users WHERE name = '$name'";
+
+    $result = $db->query($query);
+
+    $db->close();
+
+    $_SESSION['userId'] = $result->fetch_assoc()['no'];
+}
+
 function isPasswdValid() : bool
 {
     $passwd = htmlspecialchars(trim($_POST['passwd']));
@@ -93,6 +107,9 @@ else {
 
     insertUser($_POST['name'], $_POST['passwd']);
 
+
+
+    getUserId($_SESSION['name']);
     $_SESSION['isLogged'] = "true";
     header("location: main.php");
     die();

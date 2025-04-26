@@ -14,6 +14,6 @@ function addResevation($userId, $date, $msg): void
 //    $db->close();
 }
 addResevation($_SESSION['userId'], $_SESSION['slot'], $_POST['message']);
-header("Location: main.php");
+header("Location: Main/main.php");
 
 ?>

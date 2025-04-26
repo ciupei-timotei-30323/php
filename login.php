@@ -96,9 +96,11 @@ else if(!isPasswdValid($_SESSION['name']))
 
 else {
 
+
+
     getUserId($_SESSION['name']);
     $_SESSION['isLogged'] = "true";
-    header("location: main.php");
+    header("location: Main/main.php");
     die();
 }
 

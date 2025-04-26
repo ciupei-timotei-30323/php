@@ -9,37 +9,6 @@ session_start();
     <link rel="stylesheet" href="mainStyle.css">
     <title>Reservation</title>
 
-<style>
-
-    label {
-        display: block;
-        width: 100%;
-        max-width: 300px;
-        margin: 1rem auto; /* centers horizontally */
-        font-size: 1rem;
-    }
-
-    label textarea {
-        width: 100%;
-        height: 120px;
-        padding: 0.75rem 1rem;
-        font-size: 1rem;
-        background-color: #eee;
-        border: 2px solid #000;
-        color: #000;
-        box-sizing: border-box;
-        resize: none;
-        outline: none;
-    }
-
-    label textarea:focus {
-        background-color: #fff;
-        border-color: #333;
-    }
-
-
-
-</style>
 
 
 
@@ -59,12 +28,36 @@ session_start();
 
         <form action="reserve.php" method="post">
 
+            <div class="form-row-neutral">
+                <label class="radio-label">
+                    <input type="checkbox" name="option" value="option1">
+                    Option 1
+                </label>
+            </div>
+            <div class="form-row-neutral">
+                <label class="radio-label">
+                    <input type="checkbox" name="option" value="option2">
+                    Option 2
+                </label>
+            </div>
+            <div class="form-row-neutral">
+                <label class="radio-label">
+                    <input type="checkbox" name="option" value="option3">
+                    Option 3
+                </label>
+            </div>
+            <div class="form-row-neutral">
+                <label class="radio-label">
+                    <input type="checkbox" name="option" value="option4">
+                    Option 4
+                </label>
+            </div>
             <label>
-                <textarea name="message" placeholder="Enter your message (optional)"></textarea>
+                <textarea name="message" placeholder="Enter a message (optional)"></textarea>
             </label>
             <button class="submit-btn" type="submit">Reserve on <?php echo $_POST['slot']?></button>
         </form>
-        <a href="main.php" class="submit-btn">Cancel</a>
+        <a href="Main/main.php" class="submit-btn">Cancel</a>
 
     </div>
 </div>
