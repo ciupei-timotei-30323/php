@@ -14,6 +14,8 @@ require "../Main/db.php";
 if($_SESSION['isLogged'] != 'true') {
     header("location: ../index.php");
 }
+
+$_POST['slot'] = "";
 $db = db::getDb();
 
 $setting = new UserSetup($_SESSION['userId']);
@@ -38,7 +40,7 @@ $reservations = new CliUserInterfaceReservations($setting, $db);
     <div class="main-content">
         <div class="container">
 
-            <form>
+            <form action="cancelReservation.php" method="post">
                 <div class="header-row">
 
                     <div class="header-title">Future reservations</div>

@@ -30,17 +30,23 @@ class rowsGenerator{
 
     public function generate(DateTime $today)
     {
-//        var_dump($this->reservations['date']);
 
-        for($i = 0; $i < count($this->reservations); $i++){
+        // in case there's no future or past reservation
+        if(count($this->reservations) < 1){
 
-            $day = DateTime::createFromFormat("Y-m-d H:i:s", $this->reservations[$i]['date']);
+            $this->futureRows = $this->rowsHtml->getEmptySlot();
+            $this->pastRows = $this->rowsHtml->getEmptySlot();
+        }
+        else {
+            for ($i = 0; $i < count($this->reservations); $i++) {
 
-            if($day <= $today){
-                $this->pastRows .= $this->rowsHtml->getSlot($day, "1");
-            }
-            else{
-                $this->futureRows .= $this->rowsHtml->getSlot($day, "0");
+                $day = DateTime::createFromFormat("Y-m-d H:i:s", $this->reservations[$i]['date']);
+
+                if ($day <= $today) {
+                    $this->pastRows .= $this->rowsHtml->getSlot($day, "1");
+                } else {
+                    $this->futureRows .= $this->rowsHtml->getSlot($day, "0");
+                }
             }
         }
     }

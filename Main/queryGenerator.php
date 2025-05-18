@@ -34,6 +34,11 @@ class queryGenerator
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function applyQuery(mysqli $db): void
+    {
+        $db->query($this->query);
+    }
+
 
 
 }
