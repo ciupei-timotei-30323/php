@@ -35,16 +35,24 @@ EOD;
 
         switch ($mode) {
 
-            case 1:
+            case "1":
+
                 return str_replace('%value%', $date->format("Y-d-m H:i"),$this->pastSlot) . "</p></div>";
 
 
-            case 0:
+            case "0":
+
+
                 return str_replace('%value%', $date->format("Y-d-m H:i"),$this->futureSlot) . $date->format("H:i") . "</label></div>";
 
         }
 
-        return '';
+        return <<<'EOD'
+
+                <div class="form-row-disabled">
+                    <p>There's no date reserved</p></div>
+
+EOD;
     }
 
 

@@ -1,17 +1,25 @@
 <?php
 namespace Reservations;
+use Main\db;
+
 session_start();
 
-require_once "../Main/db.php";
-require_once "rowsHtml.php";
+
+require_once "CliUserInterfaceReservations.php";
+require_once "UserSetup.php";
+require "../Main/db.php";
+
 
 // Verifying that the user is logged in
-if($_SESSION['isLogged'] != "true") {
+if($_SESSION['isLogged'] != 'true') {
     header("location: ../index.php");
 }
+$db = db::getDb();
+
+$setting = new UserSetup($_SESSION['userId']);
+$reservations = new CliUserInterfaceReservations($setting, $db);
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,24 +44,24 @@ if($_SESSION['isLogged'] != "true") {
                     <div class="header-title">Future reservations</div>
 
                 </div>
-
+                <?php echo $reservations->seeReservations(); ?>
                 <!-- HTML TO BE GENERATED -->
 
 
-                <button class="submit-btn" type="submit">Cancel reservation</button>
-
-
-            </form>
-
-            <div style="gap: 0.5rem;
-            display: flex;
-            flex-direction: column;
-            font-weight : bold;">
-                <div class="header-row" style="margin-top: 2rem;">
-
-                    <div class="header-title">Past/Canceled reservations</div>
-
-                </div>
+<!--                <button class="submit-btn" type="submit">Cancel reservation</button>-->
+<!---->
+<!---->
+<!--            </form>-->
+<!---->
+<!--            <div style="gap: 0.5rem;-->
+<!--            display: flex;-->
+<!--            flex-direction: column;-->
+<!--            font-weight : bold;">-->
+<!--                <div class="header-row" style="margin-top: 2rem;">-->
+<!---->
+<!--                    <div class="header-title">Past/Canceled reservations</div>-->
+<!---->
+<!--                </div>-->
 
                 <!-- HTML TO BE GENERATED -->
 

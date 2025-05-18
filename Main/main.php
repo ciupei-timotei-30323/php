@@ -17,7 +17,7 @@ if($_SESSION['isLogged'] != "true") {
 // if the 'Day' session token is not initialized
 if(!isset($_SESSION['Day'])) {
 
-    $_SESSION['Day'] = (new DateTime('now'))->format('Y-m-d');
+    $_SESSION['Day'] = (new DateTime('now'))->add(new DateInterval('P1D'))->format('Y-m-d');
     $userDate = new DateTime($_SESSION['Day']);
 }
 
@@ -48,7 +48,7 @@ $db = db::getDb();
 
 // setting the actual current day
 $currentDay = (new DateTime('now'))->setTime(0, 0, 0);
-
+$currentDay = $currentDay->add(new DateInterval('P1D'));
 // max days for the schedule to generate
 $maxDays = new DateInterval("P7D");
 

@@ -33,10 +33,6 @@ class tableHtmlGenerator
         return $this->dayTableHtml;
     }
 
-    public function eraseHtml():void
-    {
-        $this->dayTableHtml = "";
-    }
 
 
     public function generate(DateTime $firstHour, DateInterval $shiftLength, DateInterval $increment)
