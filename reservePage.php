@@ -1,5 +1,9 @@
 <?php
 session_start();
+if(!isset($_POST['slot']))
+{
+    header("location: Main/main.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,9 +18,6 @@ session_start();
 
 </head>
 <body>
-<div class="top-bar">
-    <button>My Reservations</button>
-</div>
 
 <div class="main-content">
     <div class="container">
@@ -30,25 +31,25 @@ session_start();
 
             <div class="form-row-neutral">
                 <label class="radio-label">
-                    <input type="checkbox" name="option" value="option1">
+                    <input type="checkbox" name="op[]" value="option1">
                     Option 1
                 </label>
             </div>
             <div class="form-row-neutral">
                 <label class="radio-label">
-                    <input type="checkbox" name="option" value="option2">
+                    <input type="checkbox" name="op[]" value="option2">
                     Option 2
                 </label>
             </div>
             <div class="form-row-neutral">
                 <label class="radio-label">
-                    <input type="checkbox" name="option" value="option3">
+                    <input type="checkbox" name="op[]" value="option3">
                     Option 3
                 </label>
             </div>
             <div class="form-row-neutral">
                 <label class="radio-label">
-                    <input type="checkbox" name="option" value="option4">
+                    <input type="checkbox" name="op[]" value="option4">
                     Option 4
                 </label>
             </div>

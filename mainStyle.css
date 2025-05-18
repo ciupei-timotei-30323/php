@@ -25,6 +25,7 @@ body {
 
 }
 
+
 .main-content {
     flex: 1;
     display: flex;
@@ -195,6 +196,19 @@ label textarea {
 label textarea:focus {
     background-color: #fff;
     border-color: #333;
+}
+
+
+.pastDate-text{
+
+    font-size: 1.4rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+    cursor: none;
+
+
 }
 
 
