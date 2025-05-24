@@ -15,7 +15,7 @@ I want to make a simple reservation platform, where users create accounts then s
 
 - A simple use case diagram of the web app can be seen below
 
-![Use Case Diagram](useCaseDiag.png)
+![Use Case Diagram](docs/useCaseDiag.png)
 # Sign up process
 
 A user should be able to sign-up using a username and a password. No email use because I want the process to be quick and painless.
@@ -23,7 +23,7 @@ A user should be able to sign-up using a username and a password. No email use b
 The PHP code that makes this possible is the following:
 
 The sequence diagram of the sign up process
-![Image](SignUpSeqDiagram.jpg)
+![Image](docs/SignUpSeqDiagram.jpg)
 
 - **isUserValid() : bool** function
 
@@ -55,7 +55,7 @@ At entering the `main.php`, a table is generated with the avalaible hours this w
 
 Classes diagrams for the main.php file
 
-![Class Diagram](ClassDiagWebApp.jpg)
+![Class Diagram](docs/ClassDiagWebApp.jpg)
 
 - In the main.php, a `CliUserInterface` object is created that can generate a day's worth page. When navigating to different dates, the `scheduleSetup` property of the class is modified and another object is created.
 - Classes that have 'Html' in their name are just simple html catalogues. They contain the html code for the 'Generators' classes to use. 'Html' classes don't implement any logic.
@@ -65,7 +65,7 @@ Classes diagrams for the main.php file
 
 The following is the sequence diagram of the process of generating the user's reservations on myReservations.php web page.
 
-![Seq Diagram](userReservationSeqDiagram.png)
+![Seq Diagram](docs/userReservationSeqDiagram.png)
 
 
  - The diagram doesn't include the process of canceling an appointment, as it is fairly simple:
@@ -74,12 +74,12 @@ The following is the sequence diagram of the process of generating the user's re
 
 - Also, the class diagram of the Reservation looks like this:
 
-![](ReservationsClassDiagram.png)
+![ResClassDiag](docs/ReservationsClassDiagram.png)
 ## Database
 
 - The database is quite simple, with three tables as in the figure below:
 
-![Database diagram](dbDiagram.png)
+![Database diagram](docs/dbDiagram.png)
 
 - Note that the `email` field from the `users` table is currently not used.
 - Also, to add more `option` in the `options` table, one can simply add another field to the table and then add a html code for it in the respective php file.
